@@ -123,6 +123,20 @@ class App extends React.Component {
     }
   }
 
+  root() {
+    if (this.state.current!=="0") {
+      this.setState({
+        result: Math.sqrt(this.state.current),
+        current: "0"
+      });
+    } else {
+      this.setState({
+        result: Math.sqrt(this.state.result),
+        current: "0"
+      });
+    }
+  }
+
   handleClick(event) {
     if (event.target.className==="plus") {
       this.plus();
@@ -134,6 +148,8 @@ class App extends React.Component {
       this.divide();
     } else if (event.target.className==="square") {
       this.square();
+    } else if (event.target.className==="root") {
+      this.root();
     } else if (event.target.className==="equals") {
       this.equals();
     } else if (event.target.className==="reset-all") {
@@ -186,7 +202,7 @@ class App extends React.Component {
         <button className="multiply" onClick={this.handleClick}>*</button>
         <button className="divide" onClick={this.handleClick}>/</button>
         <button className="square" onClick={this.handleClick}>x<sup>2</sup></button>
-        <button className="root">&#8730;x</button>
+        <button className="root" onClick={this.handleClick}>&#8730;x</button>
         <button className="equals" onClick={this.handleClick}>=</button>
         <button className="reset-current" onClick={this.handleClick}>C</button>
         <button className="reset-all" onClick={this.handleClick}>AC</button>
