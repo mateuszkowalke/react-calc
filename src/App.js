@@ -27,22 +27,27 @@ class App extends React.Component {
     if(this.state.operator==="+") {
       this.setState({
         result: (Number(this.state.result)+Number(this.state.current)),
-        current: "0",
+        current: "0"
       });
     } else if(this.state.operator==="-") {
       this.setState({
         result: (Number(this.state.result)-Number(this.state.current)),
-        current: "0",
+        current: "0"
       });
     } else if(this.state.operator==="*") {
       this.setState({
         result: (Number(this.state.result)*Number(this.state.current)),
-        current: "0",
+        current: "0"
       });
     } else if(this.state.operator==="/") {
       this.setState({
         result: (Number(this.state.result)/Number(this.state.current)),
-        current: "0",
+        current: "0"
+      });
+    } else if(this.state.operator===String.fromCharCode(178)) {
+      this.setState({
+        result: (Number(this.state.result)*Number(this.state.result)),
+        current: "0"
       });
     }
   }
@@ -104,6 +109,20 @@ class App extends React.Component {
     }
   }
 
+  square() {
+    if (this.state.current!=="0") {
+      this.setState({
+        result: (Number(this.state.current)*Number(this.state.current)),
+        current: "0"
+      });
+    } else {
+      this.setState({
+        result: (Number(this.state.result)*Number(this.state.result)),
+        current: "0"
+      });
+    }
+  }
+
   handleClick(event) {
     if (event.target.className==="plus") {
       this.plus();
@@ -113,6 +132,8 @@ class App extends React.Component {
       this.multiply();
     } else if (event.target.className==="divide") {
       this.divide();
+    } else if (event.target.className==="square") {
+      this.square();
     } else if (event.target.className==="equals") {
       this.equals();
     } else if (event.target.className==="reset-all") {
@@ -164,7 +185,7 @@ class App extends React.Component {
         <button className="minus" onClick={this.handleClick}>-</button>
         <button className="multiply" onClick={this.handleClick}>*</button>
         <button className="divide" onClick={this.handleClick}>/</button>
-        <button className="square">x<sup>2</sup></button>
+        <button className="square" onClick={this.handleClick}>x<sup>2</sup></button>
         <button className="root">&#8730;x</button>
         <button className="equals" onClick={this.handleClick}>=</button>
         <button className="reset-current" onClick={this.handleClick}>C</button>
