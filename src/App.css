@@ -10,10 +10,10 @@ body {
   "current current current current"
   "reset-all reset-all reset-current reset-current"
   "square root multiply divide"
-  "seven eight nine minus"
-  "four five six plus"
-  "one two three equals"
-  "sign zero dot equals";
+  "no7 no8 no9 minus"
+  "no4 no5 no6 plus"
+  "no1 no2 no3 equals"
+  "sign no0 dot equals";
   width: 300px;
 }
 .result {
@@ -52,35 +52,35 @@ body {
 .reset-all {
   grid-area: reset-all;
 }
-.zero {
-  grid-area: zero;
+.no0 {
+  grid-area: no0;
 }
-.one {
-  grid-area: one;
+.no1 {
+  grid-area: no1;
 }
-.two {
-  grid-area: two;
+.no2 {
+  grid-area: no2;
 }
-.three {
-  grid-area: three;
+.no3 {
+  grid-area: no3;
 }
-.four {
-  grid-area: four;
+.no4 {
+  grid-area: no4;
 }
-.five {
-  grid-area: five;
+.no5 {
+  grid-area: no5;
 }
-.six {
-  grid-area: six;
+.no6 {
+  grid-area: no6;
 }
-.seven {
-  grid-area: seven;
+.no7 {
+  grid-area: no7;
 }
-.eight {
-  grid-area: eight;
+.no8 {
+  grid-area: no8;
 }
-.nine {
-  grid-area: nine;
+.no9 {
+  grid-area: no9;
 }
 .sign {
   grid-area: sign;

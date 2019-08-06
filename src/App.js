@@ -126,9 +126,9 @@ class App extends React.Component {
         current: "0",
         operator: ""
       });
-    } else if (event.target.className==="0" || event.target.className==="1" || event.target.className==="2" || event.target.className==="3" || event.target.className==="4" || event.target.className==="5" || event.target.className==="6" || event.target.className==="7" || event.target.className==="8" || event.target.className==="9") {
+    } else if (event.target.className==="no0" || event.target.className==="no1" || event.target.className==="no2" || event.target.className==="no3" || event.target.className==="no4" || event.target.className==="no5" || event.target.className==="no6" || event.target.className==="no7" || event.target.className==="no8" || event.target.className==="no9") {
       this.setState({
-        current: (this.state.current+event.target.className).replace(/^0/, "")
+        current: (this.state.current+event.target.className.replace(/no/, "")).replace(/^0/, "")
       });
     }
   }
@@ -169,16 +169,16 @@ class App extends React.Component {
         <button className="equals" onClick={this.handleClick}>=</button>
         <button className="reset-current" onClick={this.handleClick}>C</button>
         <button className="reset-all" onClick={this.handleClick}>AC</button>
-        <button className="0" onClick={this.handleClick}>0</button>
-        <button className="1" onClick={this.handleClick}>1</button>
-        <button className="2" onClick={this.handleClick}>2</button>
-        <button className="3" onClick={this.handleClick}>3</button>
-        <button className="4" onClick={this.handleClick}>4</button>
-        <button className="5" onClick={this.handleClick}>5</button>
-        <button className="6" onClick={this.handleClick}>6</button>
-        <button className="7" onClick={this.handleClick}>7</button>
-        <button className="8" onClick={this.handleClick}>8</button>
-        <button className="9" onClick={this.handleClick}>9</button>
+        <button className="no0" onClick={this.handleClick}>0</button>
+        <button className="no1" onClick={this.handleClick}>1</button>
+        <button className="no2" onClick={this.handleClick}>2</button>
+        <button className="no3" onClick={this.handleClick}>3</button>
+        <button className="no4" onClick={this.handleClick}>4</button>
+        <button className="no5" onClick={this.handleClick}>5</button>
+        <button className="no6" onClick={this.handleClick}>6</button>
+        <button className="no7" onClick={this.handleClick}>7</button>
+        <button className="no8" onClick={this.handleClick}>8</button>
+        <button className="no9" onClick={this.handleClick}>9</button>
         <button className="sign">+/-</button>
         <button className="dot">.</button>
       </div>
