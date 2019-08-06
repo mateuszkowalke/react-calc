@@ -21,7 +21,6 @@ class App extends React.Component {
     this.handleClick=this.handleClick.bind(this);
     this.handleKeyPress=this.handleKeyPress.bind(this);
     this.operate=this.operate.bind(this);
-    this.checkZero=this.checkZero.bind(this);
   }
 
   operate() {
@@ -38,14 +37,6 @@ class App extends React.Component {
     }
   }
 
-  checkZero() {
-    if (this.state.current[0]==="0" && this.state.current.length>1) {
-      this.setState({
-        current: this.state.current.replace(/^0/, "")
-      });
-    }
-  }
-
   equals() {
     this.operate();
     this.setState({operator: ""});
@@ -53,18 +44,28 @@ class App extends React.Component {
 
   plus() {
     if (this.state.operator==="") {
+      this.setState({
+        operator: "+",
+        result: this.state.result!=="0" && this.state.current==="0" ? this.state.result : this.state.current,
+        current: "0"
+      });
+    } else {
+      this.operate();
       this.setState({operator: "+"});
     }
-    this.operate();
-    this.setState({operator: "+"});
   }
 
   minus() {
     if (this.state.operator==="") {
+      this.setState({
+        operator: "-",
+        result: this.state.result!=="0" && this.state.current==="0" ? this.state.result : this.state.current,
+        current: "0"
+      });
+    } else {
+      this.operate();
       this.setState({operator: "-"});
     }
-    this.operate();
-    this.setState({operator: "-"});
   }
 
   handleClick(event) {
@@ -86,12 +87,9 @@ class App extends React.Component {
         operator: ""
       });
     } else if (event.target.className==="0" || event.target.className==="1" || event.target.className==="2" || event.target.className==="3" || event.target.className==="4" || event.target.className==="5" || event.target.className==="6" || event.target.className==="7" || event.target.className==="8" || event.target.className==="9") {
-      console.log(this.state.current);
       this.setState({
-        current: this.state.current+event.target.className
-      }, ()=>console.log("Updated"));
-      console.log(this.state.current);
-      this.checkZero();
+        current: (this.state.current+event.target.className).replace(/^0/, "")
+      });
       console.log(this.state.current);
     }
   }
@@ -105,9 +103,8 @@ class App extends React.Component {
       this.equals();
     } else if (event.key==="0" || event.key==="1" || event.key==="2" || event.key==="3" || event.key==="4" || event.key==="5" || event.key==="6" || event.key==="7" || event.key==="8" || event.key==="9") {
       this.setState({
-        current: this.state.current+event.key
+        current: (this.state.current+event.key).replace(/^0/, "")
       });
-      this.checkZero();
     }
   }
 
