@@ -34,6 +34,16 @@ class App extends React.Component {
         result: (Number(this.state.result)-Number(this.state.current)),
         current: "0",
       });
+    } else if(this.state.operator==="*") {
+      this.setState({
+        result: (Number(this.state.result)*Number(this.state.current)),
+        current: "0",
+      });
+    } else if(this.state.operator==="/") {
+      this.setState({
+        result: (Number(this.state.result)/Number(this.state.current)),
+        current: "0",
+      });
     }
   }
 
@@ -68,11 +78,41 @@ class App extends React.Component {
     }
   }
 
+  multiply() {
+    if (this.state.operator==="") {
+      this.setState({
+        operator: "*",
+        result: this.state.result!=="0" && this.state.current==="0" ? this.state.result : this.state.current,
+        current: "0"
+      });
+    } else {
+      this.operate();
+      this.setState({operator: "*"});
+    }
+  }
+
+  divide() {
+    if (this.state.operator==="") {
+      this.setState({
+        operator: "/",
+        result: this.state.result!=="0" && this.state.current==="0" ? this.state.result : this.state.current,
+        current: "0"
+      });
+    } else {
+      this.operate();
+      this.setState({operator: "/"});
+    }
+  }
+
   handleClick(event) {
     if (event.target.className==="plus") {
       this.plus();
     } else if (event.target.className==="minus") {
       this.minus();
+    } else if (event.target.className==="multiply") {
+      this.multiply();
+    } else if (event.target.className==="divide") {
+      this.divide();
     } else if (event.target.className==="equals") {
       this.equals();
     } else if (event.target.className==="reset-all") {
@@ -90,7 +130,6 @@ class App extends React.Component {
       this.setState({
         current: (this.state.current+event.target.className).replace(/^0/, "")
       });
-      console.log(this.state.current);
     }
   }
 
@@ -99,6 +138,10 @@ class App extends React.Component {
       this.plus();
     } else if (event.key==="-") {
       this.minus();
+    } else if (event.key==="*") {
+      this.multiply();
+    } else if (event.key==="/") {
+      this.divide();
     } else if (event.charCode===13) {
       this.equals();
     } else if (event.key==="0" || event.key==="1" || event.key==="2" || event.key==="3" || event.key==="4" || event.key==="5" || event.key==="6" || event.key==="7" || event.key==="8" || event.key==="9") {
@@ -119,8 +162,8 @@ class App extends React.Component {
         <Current value={this.state.current} />
         <button className="plus" onClick={this.handleClick}>+</button>
         <button className="minus" onClick={this.handleClick}>-</button>
-        <button className="multiply">*</button>
-        <button className="divide">/</button>
+        <button className="multiply" onClick={this.handleClick}>*</button>
+        <button className="divide" onClick={this.handleClick}>/</button>
         <button className="square">x<sup>2</sup></button>
         <button className="root">&#8730;x</button>
         <button className="equals" onClick={this.handleClick}>=</button>
