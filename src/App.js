@@ -137,6 +137,18 @@ class App extends React.Component {
     }
   }
 
+  sign() {
+    this.setState({
+      current: /^-/.test(this.state.current) ? this.state.current.replace(/^-/, "") : "-"+this.state.current
+    });
+  }
+
+  dot() {
+    this.setState({
+      current: /\./.test(this.state.current) ? this.state.current : this.state.current + "."
+    });
+  }
+
   handleClick(event) {
     if (event.target.className==="plus") {
       this.plus();
@@ -152,6 +164,10 @@ class App extends React.Component {
       this.root();
     } else if (event.target.className==="equals") {
       this.equals();
+    } else if (event.target.className==="sign") {
+      this.sign();
+    } else if (event.target.className==="dot") {
+      this.dot();
     } else if (event.target.className==="reset-all") {
       this.setState({
         result: "0",
@@ -165,7 +181,7 @@ class App extends React.Component {
       });
     } else if (event.target.className==="no0" || event.target.className==="no1" || event.target.className==="no2" || event.target.className==="no3" || event.target.className==="no4" || event.target.className==="no5" || event.target.className==="no6" || event.target.className==="no7" || event.target.className==="no8" || event.target.className==="no9") {
       this.setState({
-        current: (this.state.current+event.target.className.replace(/no/, "")).replace(/^0/, "")
+        current: (this.state.current+event.target.className.replace(/no/, "")).replace(/^0(?!\.)/, "")
       });
     }
   }
@@ -181,9 +197,11 @@ class App extends React.Component {
       this.divide();
     } else if (event.charCode===13) {
       this.equals();
+    } else if (event.charCode===46 || event.charCode===44) {
+      this.dot();
     } else if (event.key==="0" || event.key==="1" || event.key==="2" || event.key==="3" || event.key==="4" || event.key==="5" || event.key==="6" || event.key==="7" || event.key==="8" || event.key==="9") {
       this.setState({
-        current: (this.state.current+event.key).replace(/^0/, "")
+        current: (this.state.current+event.key).replace(/^0(?!\.)/, "")
       });
     }
   }
@@ -216,8 +234,8 @@ class App extends React.Component {
         <button className="no7" onClick={this.handleClick}>7</button>
         <button className="no8" onClick={this.handleClick}>8</button>
         <button className="no9" onClick={this.handleClick}>9</button>
-        <button className="sign">+/-</button>
-        <button className="dot">.</button>
+        <button className="sign" onClick={this.handleClick}>+/-</button>
+        <button className="dot" onClick={this.handleClick}>.</button>
       </div>
     );
   }
